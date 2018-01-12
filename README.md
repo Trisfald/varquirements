@@ -40,6 +40,8 @@ struct Use_resource : varquirements::require<resource_created, initialize> {};
 const auto value = varquirements::check_requirements<Create_resource, Init, Use_resource>::value;
 ```
 
+#### Properties customization
+
 The interaction between various properties can be customized like this:
 
 ```
@@ -65,3 +67,7 @@ struct Close : varquirements::require<resource_deleted> {};
 
 const auto value = varquirements::check_requirements<Create_resource, Init, Use_resource, Delete_resource, Close>::value;
 ```
+
+#### Disable static assertions
+
+By default, varquirements generates a static assertion when a requirements is violated. If you want to disable this behaviour you must define `VARQUIREMENTS_NO_STATIC_ASSERT` and then to manually make a check just query `varquirements::check_requirements<>::value`.
